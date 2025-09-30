@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.netology.yandexmaps.R
@@ -24,6 +25,7 @@ import ru.netology.yandexmaps.ui.fragment.NewPointFragment.Companion.pointData
 import ru.netology.yandexmaps.ui.viewmodel.PointViewModel
 import kotlin.getValue
 
+//@AndroidEntryPoint
 class ListPointsFragment : Fragment() {
 
     override fun onCreateView(

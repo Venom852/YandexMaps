@@ -37,6 +37,7 @@ import com.yandex.mapkit.map.MapWindow
 import com.yandex.mapkit.map.PlacemarkMapObject
 import com.yandex.mapkit.map.PolylineMapObject
 import com.yandex.mapkit.mapview.MapView
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.yandexmaps.R
 import ru.netology.yandexmaps.databinding.FragmentMapsBinding
 import ru.netology.yandexmaps.databinding.TitlePointDialogBoxBinding
@@ -48,6 +49,7 @@ import ru.netology.yandexmaps.ui.util.StringArg
 import ru.netology.yandexmaps.ui.viewmodel.PointViewModel
 import kotlin.getValue
 
+//@AndroidEntryPoint
 class MapsFragment : Fragment() {
     companion object {
         var Bundle.pointDtoData by StringArg

@@ -22,19 +22,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.yandexmaps.R
 import ru.netology.yandexmaps.databinding.FragmentNewPointBinding
-import ru.netology.yandexmaps.ui.dao.PointDao
+import ru.netology.yandexmaps.ui.db.AppDb
 import ru.netology.yandexmaps.ui.dto.PointDto
 import ru.netology.yandexmaps.ui.entity.PointDraftEntity
 import ru.netology.yandexmaps.ui.util.AndroidUtils
 import ru.netology.yandexmaps.ui.util.StringArg
 import kotlin.getValue
 import ru.netology.yandexmaps.ui.viewmodel.PointViewModel
-import javax.inject.Inject
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class NewPointFragment : Fragment() {
-    @Inject
-    lateinit var dao: PointDao
+//    @Inject
+//    lateinit var dao: PointDao
 
     companion object {
         //TODO
@@ -70,6 +69,7 @@ class NewPointFragment : Fragment() {
     ): View? {
         val binding = FragmentNewPointBinding.inflate(layoutInflater, container, false)
         val viewModel: PointViewModel by activityViewModels()
+        val dao = AppDb.getInstance(requireContext()).pointDao
 
         arguments?.pointData?.let {
             pointDto = gson.fromJson(it, PointDto::class.java)

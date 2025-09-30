@@ -10,5 +10,5 @@ import ru.netology.yandexmaps.ui.db.AppDb
 @Module
 object DaoModule {
     @Provides
-    fun providePostDao(appDb: AppDb): PointDao = appDb.postDao
+    fun providePostDao(appDb: AppDb): PointDao = appDb.pointDao
 }
