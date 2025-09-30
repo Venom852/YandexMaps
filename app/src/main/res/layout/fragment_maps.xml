@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".ui.fragment.MapsFragment">
+
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/titlePointDialogBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:layoutManager="androidx.cardview.widget.CardView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/goOverListPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        android:contentDescription="@string/pick_photo"
+        android:padding="0dp"
+        app:iconTint="#000000"
+        app:icon="@drawable/ic_list_48"
+        app:iconSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/App.Widget.ButtonMap" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        android:contentDescription="@string/pick_photo"
+        android:padding="0dp"
+        app:iconTint="#000000"
+        app:icon="@drawable/ic_add_points_48"
+        app:iconSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/App.Widget.Button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/zoomMinus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        android:contentDescription="@string/pick_photo"
+        android:padding="0dp"
+        app:iconTint="#000000"
+        app:icon="@drawable/ic_minus_48"
+        app:iconSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/App.Widget.Button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/zoomPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        android:contentDescription="@string/pick_photo"
+        android:padding="0dp"
+        app:iconTint="#000000"
+        app:icon="@drawable/ic_plus_48"
+        app:iconSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/zoomMinus"
+        style="@style/App.Widget.ButtonMap" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/route"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="@dimen/_8dp"
+        android:contentDescription="@string/pick_photo"
+        android:padding="0dp"
+        app:iconTint="#000000"
+        app:icon="@drawable/ic_route_48"
+        app:iconSize="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/App.Widget.Button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/geoLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="150dp"
+        android:layout_marginStart="@dimen/_8dp"
+        android:contentDescription="@string/pick_photo"
+        android:padding="0dp"
+        app:iconTint="#000000"
+        app:icon="@drawable/ic_location_cross_48"
+        app:iconSize="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/App.Widget.Button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

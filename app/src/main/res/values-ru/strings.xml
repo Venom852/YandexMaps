@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YandexMaps</string>
+    <string name="point_in_moscow">Точка в Москве</string>
+    <string name="moscow">г. Москва</string>
+    <string name="detailed_information_in_Moscow">Данную точку я сделал когда был в Москве, возле Московского Кремля. Мне очень понравился этот город, Москва прекрасное место для отдыха. Там очень красиво и я обязательно съезжу туда ещё раз.</string>
+    <string name="remove">Удалить</string>
+    <string name="edit_message">Редактировать сообщение:</string>
+    <string name="point_text">Текст точки</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="yandexmaps">ЯндексКарты</string>
+    <string name="enter_the_title">Введите название:</string>
+    <string name="title_text">Название</string>
+    <string name="enter_the_city">Введите город</string>
+    <string name="city_text">Город</string>
+    <string name="enter_the_latitude">Введите широту</string>
+    <string name="latitude_text">Широта</string>
+    <string name="enter_the_longitude">Введите долготу</string>
+    <string name="longitude_text">Долгота</string>
+    <string name="enter_the_detailed_information">Введите подробную информацию</string>
+    <string name="detailed_information_text">Текст подробной информации</string>
+    <string name="detailed">Подробнее</string>
+    <string name="enter">Ввод</string>
+</resources>

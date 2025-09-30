@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="App.Widget.Button" parent="Widget.Material3.Button.IconButton">
+        <item name="buttonTint">@color/button_selector</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="iconPadding">0dp</item>
+    </style>
+
+    <style name="App.Widget.ButtonMap" parent="Widget.Material3.Button.IconButton">
+        <item name="buttonTint">@color/button_map_selector</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="iconPadding">0dp</item>
+    </style>
+</resources>

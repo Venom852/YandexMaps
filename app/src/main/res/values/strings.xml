@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">YandexMaps</string>
+    <string name="location" translatable="false">Location</string>
+    <string name="point_in_moscow">Point in Moscow</string>
+    <string name="moscow">c. Moscow</string>
+    <string name="detailed_information_in_Moscow">I made this point when I was in Moscow, near the Moscow Kremlin. I really liked this city, Moscow is a great place to relax. It\'s very beautiful there and I\'ll definitely go there again.</string>
+    <string name="avatar" translatable="false">Avatar</string>
+    <string name="menu" translatable="false">Menu</string>
+    <string name="image_content" translatable="false">imageContent</string>
+    <string name="photo" translatable="false">Photo</string>
+    <string name="remove">Remove</string>
+    <string name="edit_message">Edit message:</string>
+    <string name="edit" translatable="false">Edit</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="point_text">Point text</string>
+    <string name="ok" translatable="false">Ok</string>
+    <string name="pick_photo" translatable="false">Pick photo</string>
+    <string name="take_photo" translatable="false">Take photo</string>
+    <string name="menu_edit">Edit</string>
+    <string name="yandexmaps">YandexMaps</string>
+    <string name="enter_the_title">Enter the title:</string>
+    <string name="title_text">Title</string>
+    <string name="enter_the_city">Enter the city</string>
+    <string name="city_text">"City "</string>
+    <string name="enter_the_latitude">Enter the latitude</string>
+    <string name="latitude_text">"Latitude "</string>
+    <string name="enter_the_longitude">Enter the longitude</string>
+    <string name="longitude_text">Longitude</string>
+    <string name="enter_the_detailed_information">Enter the detailed information</string>
+    <string name="detailed_information_text">Detailed information text</string>
+    <string name="save" translatable="false">Save</string>
+    <string name="detailed">Detailed</string>
+    <string name="enter">Enter</string>
+</resources>
