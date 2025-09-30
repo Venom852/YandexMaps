@@ -333,39 +333,3 @@ class MapsFragment : Fragment() {
         )
     }
 }
-
-//class MapFragment : Fragment() {
-//    private lateinit var binding: FragmentMapBinding
-//    private val args: MapFragmentArgs by navArgs()
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View = FragmentMapBinding.inflate(inflater).also { binding = it }.root
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        requireActivity().title = requireContext().getString(R.string.app_name)
-//
-//        val isMoved = args.run {
-//            val latitude = latitude.takeIf { it >= 0 } ?: return@run false
-//            val longitude = longitude.takeIf { it >= 0 } ?: return@run false
-//            val point = Point(latitude.toDouble(), longitude.toDouble())
-//            (activity as Activity).mapMove(point)
-//            true
-//        }
-//
-//        binding.apply {
-//            buttonRegionsList.isVisible = !isMoved
-//            buttonRegionsList.setOnClickListener {
-//                findNavController().navigate(MapFragmentDirections.actionMapFragmentToRegionsListFragment())
-//            }
-//            buttonOptions.isVisible = !isMoved
-//            buttonOptions.setOnClickListener {
-//                findNavController().navigate(MapFragmentDirections.actionMapFragmentToOptionsFragment())
-//            }
-//        }
-//    }
-//}
