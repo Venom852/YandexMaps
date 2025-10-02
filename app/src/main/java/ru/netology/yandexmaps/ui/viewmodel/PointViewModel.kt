@@ -1,8 +1,6 @@
 package ru.netology.yandexmaps.ui.viewmodel
 
-import android.app.Application
 import android.net.Uri
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,18 +10,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ru.netology.yandexmaps.ui.dao.PointDao
-import ru.netology.yandexmaps.ui.db.AppDb
 import ru.netology.yandexmaps.ui.dto.PointDto
 import ru.netology.yandexmaps.ui.entity.PointEntity
 import ru.netology.yandexmaps.ui.entity.toDto
 import ru.netology.yandexmaps.ui.model.PhotoModel
 import javax.inject.Inject
 
-//@HiltViewModel
-class PointViewModel(application: Application) : AndroidViewModel(application) {
-//@Inject constructor(
-//    private val dao: PointDao
-//): ViewModel() {
+@HiltViewModel
+class PointViewModel @Inject constructor(
+    private val dao: PointDao
+): ViewModel() {
     val empty = PointDto(
         id = 0,
         title = "",
@@ -33,8 +29,6 @@ class PointViewModel(application: Application) : AndroidViewModel(application) {
         detailedInformation = null,
         photo = null
     )
-
-    val dao = AppDb.getInstance(application).pointDao
 
     private val noPhoto = PhotoModel()
     val data: Flow<List<PointDto>> = dao.getAll().map { it.toDto() }
@@ -83,10 +77,10 @@ class PointViewModel(application: Application) : AndroidViewModel(application) {
         _photo.value = noPhoto
     }
 
-    fun savePoints(mutableListPointDto: MutableList<PointDto>) {
+    fun savePoints(listPointDto: List<PointDto>) {
         viewModelScope.launch {
-            mutableListPointDto.forEach {
-                val pointDto = it.copy(
+            listPointDto.forEach {
+                val pointDto = empty.copy(
                     title = it.title,
                     latitude = it.latitude,
                     longitude = it.longitude

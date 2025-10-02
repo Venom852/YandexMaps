@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.yandexmaps.databinding.ActivityAppBinding
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

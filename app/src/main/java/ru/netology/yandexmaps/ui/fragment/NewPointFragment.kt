@@ -22,23 +22,21 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.yandexmaps.R
 import ru.netology.yandexmaps.databinding.FragmentNewPointBinding
-import ru.netology.yandexmaps.ui.db.AppDb
+import ru.netology.yandexmaps.ui.dao.PointDao
 import ru.netology.yandexmaps.ui.dto.PointDto
 import ru.netology.yandexmaps.ui.entity.PointDraftEntity
 import ru.netology.yandexmaps.ui.util.AndroidUtils
 import ru.netology.yandexmaps.ui.util.StringArg
 import kotlin.getValue
 import ru.netology.yandexmaps.ui.viewmodel.PointViewModel
+import javax.inject.Inject
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class NewPointFragment : Fragment() {
-//    @Inject
-//    lateinit var dao: PointDao
+    @Inject
+    lateinit var dao: PointDao
 
     companion object {
-        //TODO
-        const val NEW_POST_KEY = "newPost"
-
         var pointDto = PointDto(
             id = 0,
             title = "",
@@ -69,7 +67,6 @@ class NewPointFragment : Fragment() {
     ): View? {
         val binding = FragmentNewPointBinding.inflate(layoutInflater, container, false)
         val viewModel: PointViewModel by activityViewModels()
-        val dao = AppDb.getInstance(requireContext()).pointDao
 
         arguments?.pointData?.let {
             pointDto = gson.fromJson(it, PointDto::class.java)
@@ -83,12 +80,7 @@ class NewPointFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            if (dao.getDraft().title?.isEmpty() == false ||
-                dao.getDraft().city?.isEmpty() == false ||
-                dao.getDraft().latitude?.isEmpty() == false ||
-                dao.getDraft().longitude?.isEmpty() == false ||
-                dao.getDraft().detailedInformation?.isEmpty() == false
-            ) {
+            if (!dao.isEmptyDraft() && !editing) {
                 pointDraftEntity = dao.getDraft()
                 binding.enterTitle.setText(pointDraftEntity.title)
                 binding.enterCity.setText(pointDraftEntity.city)
@@ -176,7 +168,6 @@ class NewPointFragment : Fragment() {
                                     AndroidUtils.hideKeyboard(requireView())
                                 }
                                 viewModel.edited.value = viewModel.empty
-                                //TODO
                                 findNavController().navigateUp()
                             }
                             true
@@ -193,11 +184,6 @@ class NewPointFragment : Fragment() {
                 }
             }.show()
         }
-
-//        viewModel.postCreated.observe(viewLifecycleOwner) {
-//            //TODO
-//            findNavController().navigateUp()
-//        }
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             if (!isEmpty(binding.enterTitle.text.toString()) && !editing ||

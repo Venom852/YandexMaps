@@ -11,7 +11,7 @@
     <string name="remove">Remove</string>
     <string name="edit_message">Edit message:</string>
     <string name="edit" translatable="false">Edit</string>
-    <string name="cancel" translatable="false">Cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="point_text">Point text</string>
     <string name="ok" translatable="false">Ok</string>
     <string name="pick_photo" translatable="false">Pick photo</string>
@@ -28,7 +28,9 @@
     <string name="longitude_text">Longitude</string>
     <string name="enter_the_detailed_information">Enter the detailed information</string>
     <string name="detailed_information_text">Detailed information text</string>
-    <string name="save" translatable="false">Save</string>
+    <string name="save">Save</string>
     <string name="detailed">Detailed</string>
     <string name="enter">Enter</string>
+    <string name="rationale_dialog">Sorry, but your location cannot be displayed. Please enable geolocation access in the app settings!</string>
+    <string name="sorry_dialog">I\'m sorry, but access to your location is prohibited!</string>
 </resources>

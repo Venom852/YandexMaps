@@ -49,7 +49,7 @@ import ru.netology.yandexmaps.ui.util.StringArg
 import ru.netology.yandexmaps.ui.viewmodel.PointViewModel
 import kotlin.getValue
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MapsFragment : Fragment() {
     companion object {
         var Bundle.pointDtoData by StringArg
@@ -65,7 +65,7 @@ class MapsFragment : Fragment() {
     private lateinit var binding: FragmentMapsBinding
     private lateinit var locationManager: LocationManager
     private var listPoints = mutableListOf<PointDto>()
-    private val zoomSteep = 6f
+    private val zoomSteep = 3F
     private val smoothAnimation = Animation(Animation.Type.SMOOTH, 3F)
     private val points = mutableListOf<Point>()
     private val gson: Gson = Gson()
@@ -93,9 +93,7 @@ class MapsFragment : Fragment() {
             moveToMarker(map, target)
         }
 
-        override fun onMapLongTap(map: Map, point: Point) {
-
-        }
+        override fun onMapLongTap(map: Map, point: Point) = Unit
     }
 
     private val geoObjectTapListener = GeoObjectTapListener {
@@ -157,9 +155,9 @@ class MapsFragment : Fragment() {
         yandexMap.addTapListener(geoObjectTapListener)
         mapKit.setLocationManager(locationManager)
 
-
         arguments?.pointDtoData?.let {
             pointDto = gson.fromJson(it, PointDto::class.java)
+            listPoints.add(pointDto)
             addMarker(yandexMap, Point(pointDto.latitude, pointDto.longitude))
             moveToMarker(yandexMap, Point(pointDto.latitude, pointDto.longitude))
             arguments?.pointData = null
@@ -174,11 +172,14 @@ class MapsFragment : Fragment() {
             }
 
             addPoints.setOnClickListener {
-                viewModel.savePoints(listPoints)
+                val listPointsAdd = listPoints.filter { it.title != pointDto.title }
+                viewModel.savePoints(listPointsAdd)
+                listPoints.clear()
                 findNavController().navigate( R.id.action_mapsFragment_to_listPointsFragment2 )
             }
 
             goOverListPoint.setOnClickListener{
+                listPoints.clear()
                 findNavController().navigate(R.id.action_mapsFragment_to_listPointsFragment2)
             }
 
@@ -201,7 +202,7 @@ class MapsFragment : Fragment() {
         with(yandexMap.cameraPosition) {
             yandexMap.move(
                 CameraPosition(target, zoom + value, azimuth, tilt),
-                smoothAnimation,
+                Animation(Animation.Type.SMOOTH, 0.5F),
                 null,
             )
         }
@@ -222,6 +223,7 @@ class MapsFragment : Fragment() {
     }
 
     private fun deletePolyline() {
+        points.clear()
         yandexMap.mapObjects.remove(polylineMapObject)
     }
 
@@ -234,24 +236,21 @@ class MapsFragment : Fragment() {
     }
 
     private fun deleteMarker(mapObject: MapObject) {
-        listPoints.filter { it.title != mapObject.userData }
+        listPoints = listPoints.filter { it.title != mapObject.userData }.toMutableList()
         yandexMap.mapObjects.remove(mapObject)
     }
 
     private fun addMarker(yandexMap: Map, target: Point) {
         val imageProvider =
             DrawableImageProvider(requireContext(), ImageInfo(R.drawable.ic_netology_48dp))
-        var title = ""
 
         if (pointDto.latitude == target.latitude && pointDto.longitude == target.longitude) {
-            title = pointDto.title
             placemarkMapObject = yandexMap.mapObjects.addPlacemark {
                 it.setIcon(imageProvider)
                 it.geometry = target
-                it.setIcon(imageProvider)
-                it.setText(title)
+                it.setText(pointDto.title)
                 it.addTapListener(placemarkTapListener)
-                it.userData = title
+                it.userData = pointDto.title
             }
         } else {
             dialog.setCancelable(false)
@@ -259,11 +258,11 @@ class MapsFragment : Fragment() {
             dialog.show()
 
             bindingTitlePointDialogBox.enterTitleButton.setOnClickListener {
-                title = bindingTitlePointDialogBox.enterTitleText.text.toString()
+                val title = bindingTitlePointDialogBox.enterTitleText.text.toString()
+                bindingTitlePointDialogBox.enterTitleText.text.clear()
                 placemarkMapObject = yandexMap.mapObjects.addPlacemark {
                     it.setIcon(imageProvider)
                     it.geometry = target
-                    it.setIcon(imageProvider)
                     it.setText(title)
                     it.addTapListener(placemarkTapListener)
                     it.userData = title
@@ -280,7 +279,11 @@ class MapsFragment : Fragment() {
                 if (isGranted) {
                     enableUserLocation(mapWindow)
                 } else {
-                    // TODO: show sorry dialog
+                    Toast.makeText(
+                        requireContext(),
+                        requireContext().getString(R.string.sorry_dialog),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
 
@@ -291,11 +294,13 @@ class MapsFragment : Fragment() {
             ) == PackageManager.PERMISSION_GRANTED -> {
                 enableUserLocation(mapWindow)
             }
-            // 2. Должны показать обоснование необходимости прав
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                // TODO: show rationale dialog
+                Toast.makeText(
+                    requireContext(),
+                    requireContext().getString(R.string.rationale_dialog),
+                    Toast.LENGTH_LONG
+                ).show()
             }
-            // 3. Запрашиваем права
             else -> {
                 requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             }

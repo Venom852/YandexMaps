@@ -25,7 +25,7 @@ import ru.netology.yandexmaps.ui.fragment.NewPointFragment.Companion.pointData
 import ru.netology.yandexmaps.ui.viewmodel.PointViewModel
 import kotlin.getValue
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class ListPointsFragment : Fragment() {
 
     override fun onCreateView(

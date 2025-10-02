@@ -28,7 +28,6 @@ import kotlin.jvm.java
 import ru.netology.yandexmaps.ui.viewmodel.PointViewModel
 
 class PointFragment : Fragment() {
-
     companion object {
         private var pointDto = PointDto(
             id = 0,
@@ -52,6 +51,7 @@ class PointFragment : Fragment() {
     ): View? {
         val binding = FragmentPointBinding.inflate(layoutInflater, container, false)
         val viewModel: PointViewModel by activityViewModels()
+
         applyInset(binding.pointFragment)
 
         arguments?.textPoint?.let {
@@ -60,14 +60,9 @@ class PointFragment : Fragment() {
             arguments?.textPoint = null
         }
 
-        with(binding) {
-            title.text = pointDto.title
-            city.text = pointDto.city
-            latitude.text = pointDto.latitude.toString()
-            longitude.text = pointDto.longitude.toString()
-            detailedInformation.text = pointDto.detailedInformation
-            photo.setImageURI(pointDto.photo?.toUri())
+        setValues(binding)
 
+        with(binding) {
             location.setOnClickListener {
                 findNavController().navigate(
                     R.id.action_pointFragment2_to_mapsFragment,
@@ -104,14 +99,15 @@ class PointFragment : Fragment() {
                     }
                 }.show()
             }
+        }
 
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.data.collectLatest {
-                        it.map { point ->
-                            if (point.id == pointId) {
-                                pointDto = point
-                            }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.data.collectLatest {
+                    it.map { point ->
+                        if (point.id == pointId) {
+                            pointDto = point
+                            setValues(binding)
                         }
                     }
                 }
@@ -119,6 +115,17 @@ class PointFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun setValues(binding: FragmentPointBinding) {
+        with(binding) {
+            title.text = pointDto.title
+            city.text = pointDto.city
+            latitude.text = pointDto.latitude.toString()
+            longitude.text = pointDto.longitude.toString()
+            detailedInformation.text = pointDto.detailedInformation
+            photo.setImageURI(pointDto.photo?.toUri())
+        }
     }
 
     private fun applyInset(main: View) {

@@ -6,6 +6,7 @@
     <string name="detailed_information_in_Moscow">Данную точку я сделал когда был в Москве, возле Московского Кремля. Мне очень понравился этот город, Москва прекрасное место для отдыха. Там очень красиво и я обязательно съезжу туда ещё раз.</string>
     <string name="remove">Удалить</string>
     <string name="edit_message">Редактировать сообщение:</string>
+    <string name="cancel">Отменить</string>
     <string name="point_text">Текст точки</string>
     <string name="menu_edit">Редактировать</string>
     <string name="yandexmaps">ЯндексКарты</string>
@@ -19,6 +20,9 @@
     <string name="longitude_text">Долгота</string>
     <string name="enter_the_detailed_information">Введите подробную информацию</string>
     <string name="detailed_information_text">Текст подробной информации</string>
+    <string name="save">Сохранить</string>
     <string name="detailed">Подробнее</string>
     <string name="enter">Ввод</string>
+    <string name="rationale_dialog">Извините, но Ваше местонахождение не может быть отображено. Пожалуйста, включите доступ к геолокации в настройках приложения!</string>
+    <string name="sorry_dialog">Извините, но доступ к Вашему местонахождению запрещён!</string>
 </resources>

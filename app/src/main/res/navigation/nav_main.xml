@@ -48,7 +48,8 @@
     <fragment
         android:id="@+id/pointFragment2"
         android:name="ru.netology.yandexmaps.ui.fragment.PointFragment"
-        android:label="PointFragment" >
+        android:label="PointFragment"
+        tools:layout="@layout/fragment_point" >
         <action
             android:id="@+id/action_pointFragment2_to_listPointsFragment2"
             app:destination="@id/listPointsFragment2"
@@ -74,7 +75,8 @@
     <fragment
         android:id="@+id/newPointFragment"
         android:name="ru.netology.yandexmaps.ui.fragment.NewPointFragment"
-        android:label="NewPointFragment" >
+        android:label="NewPointFragment"
+        tools:layout="@layout/fragment_new_point" >
         <action
             android:id="@+id/action_newPointFragment_to_listPointsFragment2"
             app:destination="@id/listPointsFragment2"
